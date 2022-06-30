@@ -1,0 +1,45 @@
+{
+    "name": "sbsedv/sha3-shake",
+    "type": "library",
+    "description": "SHA-3 SHAKE implementation in PHP",
+    "license": "MIT",
+    "homepage": "https://github.com/SBSEDV/sha3-shake-php",
+    "authors": [
+        {
+            "name": "Daniel Burger",
+            "homepage": "https://github.com/danielburger1337"
+        }
+    ],
+    "keywords": [
+        "sha-3",
+        "sha3",
+        "shake",
+        "shake-128",
+        "shake-256"
+    ],
+    "require": {
+        "php": ">=8.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.4",
+        "phpunit/phpunit": "^9.5"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "SBSEDV\\SHA3Shake\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SBSEDV\\SHA3Shake\\Tests\\": "test"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.x-dev"
+        }
+    }
+}
