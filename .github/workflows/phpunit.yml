@@ -1,0 +1,30 @@
+name: PHPUnit tests
+
+on:
+    pull_request:
+        branches: [main]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Cache Composer dependencies
+              uses: actions/cache@v3
+              with:
+                  path: /tmp/composer-cache
+                  key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+
+            - name: Install Composer dependencies
+              uses: php-actions/composer@v6
+              with:
+                  php_version: 8.1
+                  version: 2.x
+
+            - name: PHPUnit tests
+              uses: php-actions/phpunit@v3
+              with:
+                  php_version: 8.1
