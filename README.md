@@ -33,3 +33,9 @@ See the PHPDoc annotation for more information about the arguments.
     SHA3::shake('This is a SHAKE256 test string.', 256, 512);
     // 3477218c282909fa2e1df2e7c3bc4e6bb2c935ceaf95c4b421bfb948bcc750b8e7da8f04d85f8bfaf80f5b09c007fd7d43aa0361da1cb79b875d32114b1f9421
 ```
+
+---
+
+## **Sources**
+
+This library uses a modified implementation from the abandoned [bb/php-sha3](https://github.com/0xbb/php-sha3) package.
