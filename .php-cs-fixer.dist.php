@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-if (!file_exists(__DIR__.'/src')) {
+if (!\file_exists(__DIR__.'/src')) {
     exit(0);
 }
 
@@ -15,6 +15,9 @@ return (new PhpCsFixer\Config())
         'phpdoc_annotation_without_dot' => false,
         'yoda_style' => false,
         'single_line_throw' => false,
+        'native_function_invocation' => [
+            'include' => ['@all'],
+        ],
     ])
     ->setRiskyAllowed(true)
     ->setFinder(
