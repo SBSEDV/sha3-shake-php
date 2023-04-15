@@ -21,7 +21,7 @@ final class SHA3Shake
      * Calculate the SHAKE-128 hash of a string.
      *
      * @param string $string       The input string.
-     * @param int    $outputLength The length of the digest.
+     * @param int    $outputLength The length of the digest in bytes.
      * @param bool   $binary       [optional] If the optional raw_output is set to true,
      *                             then the digest is instead returned in raw binary format.
      */
@@ -34,7 +34,7 @@ final class SHA3Shake
      * Calculate the SHAKE-256 hash of a string.
      *
      * @param string $string       The input string.
-     * @param int    $outputLength The length of the digest.
+     * @param int    $outputLength The length of the digest in bytes.
      * @param bool   $binary       [optional] If the optional raw_output is set to true,
      *                             then the digest is instead returned in raw binary format.
      */
