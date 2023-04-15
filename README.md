@@ -1,3 +1,5 @@
+[![PHPUnit](https://github.com/SBSEDV/sha3-shake-php/actions/workflows/phpunit.yml/badge.svg)](https://github.com/SBSEDV/sha3-shake-php/actions/workflows/phpunit.yml)
+
 # SHA3-SHAKE
 
 Native PHP implementation of the SHA3-SHAKE (KECCAK) algorithm.
