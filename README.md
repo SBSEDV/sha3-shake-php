@@ -5,7 +5,7 @@ Native PHP implementation of the SHA3-SHAKE (KECCAK) algorithm.
 This library is [PSR-4](https://www.php-fig.org/psr/psr-4/) compatible and can be installed via PHP's dependency manager [Composer](https://getcomposer.org).
 
 ```shell
-composer install sbsedv/sha3-shake
+composer require sbsedv/sha3-shake
 ```
 
 This library requires a 64-bit version of PHP.
