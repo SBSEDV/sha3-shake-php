@@ -2,7 +2,7 @@
 
 namespace SBSEDV\SHA3Shake;
 
-final class SHA3
+final class SHA3Shake
 {
     private const KECCAK_ROUNDS = 24;
     private const KECCAKF_ROTC = [1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 2, 14, 27, 41, 56, 8, 25, 43, 62, 18, 39, 61, 20, 44];
@@ -18,15 +18,39 @@ final class SHA3
     ];
 
     /**
-     * Calculate the SHAKE-128 / SHAKE-256 hash of a string.
+     * Calculate the SHAKE-128 hash of a string.
      *
+     * @param string $string       The input string.
+     * @param int    $outputLength The length of the digest.
+     * @param bool   $binary       [optional] If the optional raw_output is set to true,
+     *                             then the digest is instead returned in raw binary format.
+     */
+    public static function shake128(string $string, int $outputLength, bool $binary = false): string
+    {
+        return self::doHash($string, 128, $outputLength, $binary);
+    }
+
+    /**
+     * Calculate the SHAKE-256 hash of a string.
+     *
+     * @param string $string       The input string.
+     * @param int    $outputLength The length of the digest.
+     * @param bool   $binary       [optional] If the optional raw_output is set to true,
+     *                             then the digest is instead returned in raw binary format.
+     */
+    public static function shake256(string $string, int $outputLength, bool $binary = false): string
+    {
+        return self::doHash($string, 256, $outputLength, $binary);
+    }
+
+    /**
      * @param string $string       The input string.
      * @param int    $capacity     The SHAKE algorithm capacity.
      * @param int    $outputLength The length of the digest.
      * @param bool   $binary       [optional] If the optional raw_output is set to true,
      *                             then the digest is instead returned in raw binary format.
      */
-    public static function shake(string $string, int $capacity, int $outputLength, bool $binary = false): string
+    private static function doHash(string $string, int $capacity, int $outputLength, bool $binary = false): string
     {
         if (\PHP_INT_SIZE !== 8) {
             throw new \RuntimeException('This SHA3-SHAKE implementation is only available for 64-bit PHP.');
