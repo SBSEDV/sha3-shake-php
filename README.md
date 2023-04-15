@@ -20,18 +20,18 @@ Since version ^7.1 the SHA3 algorithm is nativly supported by PHP via the [`hash
 
 ## **How To Use**
 
-The library exposes only one public static method.
+The library exposes two public static method for both shake versions.
 See the PHPDoc annotation for more information about the arguments.
 
 ```php
 <?php
-    use SBSEDV\SHA3Shake\SHA3;
+    use SBSEDV\SHA3Shake\SHA3Shake;
 
-    SHA3::shake('This is a This is a SHAKE128 test string.', 128, 256);
-    // 7f9c2ba4e88f827d616045507605853ed73b8093f6efbc88eb1a6eacfa66ef26
+    SHA3Shake::shake128('This is a test string.', 64);
+    // 041b3634a7b103979e4c7e100cdc6ec19e3541b15633657ebae4bb7dd9aca0dc
 
-    SHA3::shake('This is a SHAKE256 test string.', 256, 512);
-    // 3477218c282909fa2e1df2e7c3bc4e6bb2c935ceaf95c4b421bfb948bcc750b8e7da8f04d85f8bfaf80f5b09c007fd7d43aa0361da1cb79b875d32114b1f9421
+    SHA3Shake::shake256('This is a test string.', 64);
+    // ec31f7a681a317a276b844e22e3e777834c5de311816d70329d5c8054846946b
 ```
 
 ---
