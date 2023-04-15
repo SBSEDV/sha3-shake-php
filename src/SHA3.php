@@ -36,6 +36,10 @@ final class SHA3
             throw new \InvalidArgumentException('Invalid capacity. Supported are 128 and 256');
         }
 
+        if ($outputLength % 2 !== 0) {
+            throw new \InvalidArgumentException('Invalid outputLength. Output length must be divisible by 2');
+        }
+
         $capacity /= 8;
 
         $inlen = \mb_strlen($string, '8bit');
@@ -90,7 +94,7 @@ final class SHA3
         for ($i = 0; $i < 25; ++$i) {
             $out .= $t = \pack('V*', $st[$i][1], $st[$i][0]);
         }
-        $r = self::substr($out, 0, (int) ($outputLength / 8));
+        $r = self::substr($out, 0, (int) ($outputLength / 2));
 
         return $binary ? $r : \bin2hex($r);
     }
@@ -112,8 +116,8 @@ final class SHA3
 
             for ($i = 0; $i < 5; ++$i) {
                 $t = [
-                    $bc[($i + 4) % 5][0] ^ (($bc[($i + 1) % 5][0] << 1) | ($bc[($i + 1) % 5][1] >> 31)) & (0xFFFFFFFF),
-                    $bc[($i + 4) % 5][1] ^ (($bc[($i + 1) % 5][1] << 1) | ($bc[($i + 1) % 5][0] >> 31)) & (0xFFFFFFFF),
+                    $bc[($i + 4) % 5][0] ^ (($bc[($i + 1) % 5][0] << 1) | ($bc[($i + 1) % 5][1] >> 31)) & 0xFFFFFFFF,
+                    $bc[($i + 4) % 5][1] ^ (($bc[($i + 1) % 5][1] << 1) | ($bc[($i + 1) % 5][0] >> 31)) & 0xFFFFFFFF,
                 ];
 
                 for ($j = 0; $j < 25; $j += 5) {
@@ -141,8 +145,8 @@ final class SHA3
                 }
 
                 $st[$j] = [
-                    (($hi << $n) | ($lo >> (32 - $n))) & (0xFFFFFFFF),
-                    (($lo << $n) | ($hi >> (32 - $n))) & (0xFFFFFFFF),
+                    (($hi << $n) | ($lo >> (32 - $n))) & 0xFFFFFFFF,
+                    (($lo << $n) | ($hi >> (32 - $n))) & 0xFFFFFFFF,
                 ];
 
                 $t = $bc[0];
