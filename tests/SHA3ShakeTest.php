@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace SBSEDV\SHA3Shake\Tests;
+namespace danielburger1337\SHA3Shake\Tests;
 
+use danielburger1337\SHA3Shake\SHA3Shake;
 use PHPUnit\Framework\TestCase;
-use SBSEDV\SHA3Shake\SHA3Shake;
 
 class SHA3Test extends TestCase
 {

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace SBSEDV\SHA3Shake;
+namespace danielburger1337\SHA3Shake;
 
 final class SHA3Shake
 {

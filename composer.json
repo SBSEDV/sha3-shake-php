@@ -1,9 +1,9 @@
 {
-    "name": "sbsedv/sha3-shake",
+    "name": "danielburger1337/sha3-shake",
     "type": "library",
     "description": "SHA-3 SHAKE implementation in PHP",
     "license": "MIT",
-    "homepage": "https://github.com/SBSEDV/sha3-shake-php",
+    "homepage": "https://github.com/danielburger1337/sha3-shake-php",
     "authors": [
         {
             "name": "Daniel Burger",
@@ -30,12 +30,12 @@
     },
     "autoload": {
         "psr-4": {
-            "SBSEDV\\SHA3Shake\\": "src/"
+            "danielburger1337\\SHA3Shake\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SBSEDV\\SHA3Shake\\Tests\\": "test"
+            "danielburger1337\\SHA3Shake\\Tests\\": "test"
         }
     },
     "extra": {

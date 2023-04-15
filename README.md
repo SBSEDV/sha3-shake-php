@@ -1,4 +1,4 @@
-[![PHPUnit](https://github.com/SBSEDV/sha3-shake-php/actions/workflows/phpunit.yml/badge.svg)](https://github.com/SBSEDV/sha3-shake-php/actions/workflows/phpunit.yml)
+[![PHPUnit](https://github.com/danielburger1337/sha3-shake-php/actions/workflows/phpunit.yml/badge.svg)](https://github.com/danielburger1337/sha3-shake-php/actions/workflows/phpunit.yml)
 
 # SHA3-SHAKE
 
@@ -7,7 +7,7 @@ Native PHP implementation of the SHA3-SHAKE (KECCAK) algorithm.
 This library is [PSR-4](https://www.php-fig.org/psr/psr-4/) compatible and can be installed via PHP's dependency manager [Composer](https://getcomposer.org).
 
 ```shell
-composer require sbsedv/sha3-shake
+composer require danielburger1337/sha3-shake
 ```
 
 This library requires a 64-bit version of PHP.
@@ -27,7 +27,7 @@ See the PHPDoc annotation for more information about the arguments.
 
 ```php
 <?php
-    use SBSEDV\SHA3Shake\SHA3Shake;
+    use danielburger1337\SHA3Shake\SHA3Shake;
 
     SHA3Shake::shake128('This is a test string.', 64);
     // 041b3634a7b103979e4c7e100cdc6ec19e3541b15633657ebae4bb7dd9aca0dc
