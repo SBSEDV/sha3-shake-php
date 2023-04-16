@@ -52,4 +52,4 @@ jobs:
             ###< Composer ###
 
             - name: Run PHPSTAN
-              run: $GITHUB_WORKSPACE/vendor/bin/phpstan --level=8 --error-format=github
+              run: $GITHUB_WORKSPACE/vendor/bin/phpstan --level=9 --error-format=github
