@@ -1,4 +1,5 @@
 [![PHPUnit](https://github.com/danielburger1337/sha3-shake-php/actions/workflows/phpunit.yml/badge.svg)](https://github.com/danielburger1337/sha3-shake-php/actions/workflows/phpunit.yml)
+[![PHPStan](https://github.com/danielburger1337/sha3-shake-php/actions/workflows/phpstan.yml/badge.svg)](https://github.com/danielburger1337/sha3-shake-php/actions/workflows/phpstan.yml)
 
 # SHA3-SHAKE
 
