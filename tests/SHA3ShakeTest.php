@@ -3,13 +3,15 @@
 namespace danielburger1337\SHA3Shake\Tests;
 
 use danielburger1337\SHA3Shake\SHA3Shake;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-class SHA3Test extends TestCase
+#[CoversClass(SHA3Shake::class)]
+class SHA3ShakeTest extends TestCase
 {
-    /**
-     * Test that only even output lengths are accepted.
-     */
+    #[Test]
     public function testShakeOutputLength(): void
     {
         SHA3Shake::shake128('', 256);
@@ -22,9 +24,8 @@ class SHA3Test extends TestCase
         SHA3Shake::shake256('', 57);
     }
 
-    /**
-     * @dataProvider shake128Provider
-     */
+    #[Test]
+    #[DataProvider('shake128Provider')]
     public function testShake128(string $string, int $outputLength, string $expected): void
     {
         $hash = SHA3Shake::shake128($string, $outputLength, false);
@@ -35,9 +36,8 @@ class SHA3Test extends TestCase
         $this->assertEquals(SHA3Shake::shake128($string, $outputLength, true), \hex2bin($expected));
     }
 
-    /**
-     * @dataProvider shake256Provider
-     */
+    #[Test]
+    #[DataProvider('shake256Provider')]
     public function testShake256(string $string, int $outputLength, string $expected): void
     {
         $hash = SHA3Shake::shake256($string, $outputLength, false);
@@ -48,7 +48,7 @@ class SHA3Test extends TestCase
         $this->assertEquals(SHA3Shake::shake256($string, $outputLength, true), \hex2bin($expected));
     }
 
-    protected function shake128Provider(): array
+    public static function shake128Provider(): array
     {
         return [
             [
@@ -60,11 +60,10 @@ class SHA3Test extends TestCase
         ];
     }
 
-    protected function shake256Provider(): array
+    public static function shake256Provider(): array
     {
         return [
             [
-                // @see https://bitbucket.org/openid/connect/issues/1125
                 'YmJiZTAwYmYtMzgyOC00NzhkLTkyOTItNjJjNDM3MGYzOWIy9sFhvH8K_x8UIHj1osisS57f5DduL',
                 114,
                 'b01fd4ef68f26f45a0b57f13b15a2a2679ba083dbde56f607d20d1c648a50772c02fb4448bd258bad456fecd72138943f1c39f3197fcde08b8',
