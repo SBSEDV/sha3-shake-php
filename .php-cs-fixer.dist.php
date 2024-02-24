@@ -16,13 +16,13 @@ return (new PhpCsFixer\Config())
         'yoda_style' => false,
         'single_line_throw' => false,
         'native_function_invocation' => [
-            'include' => ['@all'],
+            'include' => ['@internal'],
         ],
     ])
     ->setRiskyAllowed(true)
     ->setFinder(
         PhpCsFixer\Finder::create()
-            ->in(__DIR__.'/src')
+            ->in(__DIR__.'/src', __DIR__.'/tests')
             ->append([__FILE__])
     )
 ;
