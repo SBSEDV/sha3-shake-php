@@ -1,4 +1,0 @@
-parameters:
-  checkMissingIterableValueType: false
-  paths:
-    - src
