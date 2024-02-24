@@ -48,6 +48,9 @@ class SHA3ShakeTest extends TestCase
         $this->assertEquals(SHA3Shake::shake256($string, $outputLength, true), \hex2bin($expected));
     }
 
+    /**
+     * @return array<array{0: string, 1: int, 2: string}>
+     */
     public static function shake128Provider(): array
     {
         return [
@@ -60,6 +63,9 @@ class SHA3ShakeTest extends TestCase
         ];
     }
 
+    /**
+     * @return array<array{0: string, 1: int, 2: string}>
+     */
     public static function shake256Provider(): array
     {
         return [
