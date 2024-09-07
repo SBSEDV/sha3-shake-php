@@ -60,16 +60,16 @@ final class SHA3Shake
             throw new \InvalidArgumentException('Invalid capacity. Supported are 128 and 256');
         }
 
-        if ($outputLength % 2 !== 0) {
+        if (($outputLength & 1) !== 0) {
             throw new \InvalidArgumentException('Invalid outputLength. Output length must be divisible by 2');
         }
 
-        $capacity /= 8;
+        $capacity >>= 3;
 
         $inlen = \mb_strlen($string, '8bit');
 
-        $rsiz = 200 - 2 * $capacity;
-        $rsizw = $rsiz / 8;
+        $rsiz = 200 - ($capacity << 1);
+        $rsizw = $rsiz >> 3;
 
         $st = [];
         for ($i = 0; $i < 25; ++$i) {
@@ -96,11 +96,11 @@ final class SHA3Shake
         $temp = self::substr($string, $in_t, $inlen);
         $temp = \str_pad($temp, $rsiz, "\x0", \STR_PAD_RIGHT);
 
-        $temp[$inlen] = \chr(0x1F);
-        $temp[$rsiz - 1] = \chr(\ord($temp[$rsiz - 1]) | 0x80);
+        $temp[$inlen] = self::chr(0x1F);
+        $temp[$rsiz - 1] = self::chr(self::ord($temp[$rsiz - 1]) | 0x80);
 
         for ($i = 0; $i < $rsizw; ++$i) {
-            $t = \unpack('V*', self::substr($temp, $i * 8, 8));
+            $t = \unpack('V*', self::substr($temp, $i << 3, 8));
 
             if (false === $t) {
                 throw new \RuntimeException('unpack() failed.');
@@ -116,10 +116,13 @@ final class SHA3Shake
 
         $out = '';
         for ($i = 0; $i < 25; ++$i) {
-            $out .= $t = \pack('V*', $st[$i][1], $st[$i][0]);
+            $out .= \pack('V*', $st[$i][1], $st[$i][0]);
         }
-        $r = self::substr($out, 0, (int) ($outputLength / 2));
+        $r = self::substr($out, 0, (int) ($outputLength >> 1));
 
+        if (function_exists('sodium_bin2hex')) {
+            return $binary ? $r : \sodium_bin2hex($r);
+        }
         return $binary ? $r : \bin2hex($r);
     }
 
@@ -195,6 +198,20 @@ final class SHA3Shake
                 $st[0][1] ^ self::KECCAKF_RNDC[$round][1],
             ];
         }
+    }
+
+    private static function chr(int $x): string
+    {
+        return \pack('C', $x);
+    }
+
+    private static function ord(string $c): int
+    {
+        $ord = \unpack('C', $c[0]);
+        if (!\is_array($ord) || !array_key_exists(1, $ord)) {
+            throw new \RuntimeException('Error decoding string to integer');
+        }
+        return (int) $ord[1];
     }
 
     /**
