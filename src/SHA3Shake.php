@@ -120,9 +120,10 @@ final class SHA3Shake
         }
         $r = self::substr($out, 0, (int) ($outputLength >> 1));
 
-        if (function_exists('sodium_bin2hex')) {
+        if (\function_exists('sodium_bin2hex')) {
             return $binary ? $r : \sodium_bin2hex($r);
         }
+
         return $binary ? $r : \bin2hex($r);
     }
 
@@ -208,9 +209,10 @@ final class SHA3Shake
     private static function ord(string $c): int
     {
         $ord = \unpack('C', $c[0]);
-        if (!\is_array($ord) || !array_key_exists(1, $ord)) {
+        if (!\is_array($ord) || !\array_key_exists(1, $ord)) {
             throw new \RuntimeException('Error decoding string to integer');
         }
+
         return (int) $ord[1];
     }
 
